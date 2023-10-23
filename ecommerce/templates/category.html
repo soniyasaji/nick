@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <img src="{% static 'images/banim.jpg' %}" height="600px" width="100%">
+</div>
+<div class="container-fluid mt-4" style="margin-bottom:60px;">
+    <h2 class="text-center text-uppercase mb-2" style="color:red;"><strong>Our Collections</strong></h2>
+    <p class="text-align:justify;line-height:2;">E-commerce typically uses the web for at least a part of a transaction's life cycle although it may also use other technologies such as e-mail. Typical e-commerce transactions include the purchase of products (such as books from Amazon) or services (such as music downloads in the form of digital distribution such as the iTunes Store).[1] There are three areas of e-commerce: online retailing, electronic markets, and online auctions. E-commerce is supported by electronic business.[2] The existence value of e-commerce is to allow consumers to shop online and pay online through the Internet, saving the time and space of customers and enterprises, greatly improving transaction efficiency, especially for busy office workers, and also saving a lot of valuable time.[3]</p>
+</div>
+<div class="container-fluid mt-4"  id="2" style="margin-bottom:100px;">
+    <div class="row">
+        {% for i in c %}
+        <div class="col-sm-4">
+            <div class="card" style="width:24rem;height:36rem;">
+  <img src="{{i.image.url}}" class="card-img-top" height="300px" width="100%" alt="...">
+  <div class="card-body">
+      <center><h3 class="card-title text-uppercase" style="color:brown;"><strong>{{i.cname}}</strong></h3></center>
+    <p class="card-text">{{i.description}}</p>
+    <a href="{% url 'shop:allproducts' i.cname %}" style="position:relative;left:30%;" class="btn btn-primary">PRODUCTS</a>
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
