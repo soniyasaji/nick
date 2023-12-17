@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5" style="margin-bottom:30px;">
+
+    <div class="row">
+        <div class="col-sm-5">
+            <img src="{{nd.nimage.url}}" height="350px" width="370px;">
+        </div>
+        <div class="col-sm-7 border border-3 bg-danger border-secondary">
+            <h1 class="text-uppercase mb-4" style="height:50px;background-color:#D604D3"><strong>{{nd.ntypname}}</strong></h1>
+            <p class="mb-2" style="text-align:justify;line-height:1.7">{{nd.ndesc}}</p>
+            <h6>{{nd.nprice}}</h6>
+            <div>
+            <a class="btn btn-primary" href="" role="button">More About</a>
+             {% if nd.stock <= 0 %}
+            <h4 class="mt-5">OUT OF STOCK</h4>
+            {% else %}
+
+            <a href="{% url 'cart:add_to_cart' nd.ntypname %}" class="btn btn-primary mt-3">ADD TO CART</a>
+            {% endif %}
+
+        </div>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3>welcome to view page</h3>
+<table class="table table-bordered">
+<tr>
+    <th>TITLE</th>
+    <th>AUTHOR</th>
+    <th>PRICE</th>
+</tr>
+    {% for i in newspaper %}
+    <tr>
+        <td>{{i.news_title}}</td>
+        <td>{{i.news_price}}</td>
+        <td>{{i.news_desc}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<ol>
+    {% for i in newspaper %}
+    <li>Newspaper Details</li>
+    <ul>
+
+    </ul>
+    {% endfor %}
+</ol>
+
+{% endblock %}

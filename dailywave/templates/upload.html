@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Upload Video</title>
+</head>
+<body>
+
+<div>
+    <form action="{% url 'newspaper:videos' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter Video Title"><br>
+        <input type="file" name="video" accept="videos/*">
+        <button type="submit">Upload New Video</button>
+    </form>
+</div>
+</body>
+{% endblock %}
