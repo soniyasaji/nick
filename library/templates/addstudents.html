@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add{% endblock %}
+{% block content %}
+<center><h3><strong>ADD STUDENTS</strong></h3></center>
+<form method="POST">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Name of Student</label>
+    <input type="text" class="form-control" name="s" placeholder="Enter your Name here">
+    <div class="mb-3">
+    <label class="form-label">Course</label>
+    <input type="text" class="form-control" name="c" placeholder="Enter the Course">
+  </div>
+
+    <div class="mb-3">
+    <label class="form-label">Phone Number</label>
+    <input type="number" class="form-control" name="o" placeholder="Enter Phone Number">
+  </div>
+  <div class="mb-3">
+      <label class="form-check-label">College</label>
+    <input type="text" class="form-control" name="g" placeholder="College Name">
+
+  </div>
+    <div class="mb-3">
+      <input type="submit" class="form-control">
+    </div>
+    </div>
+</form>
+{% endblock %}

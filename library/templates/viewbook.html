@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}ViewBook{% endblock %}
+{% load static %}
+{% block content %}
+<h3>BOOK DETAILS</h3>
+<center>
+<table class="table table-bordered">
+       <tr>
+           <th>COVER</th><td><img src="{{b.image.url}}" style="width:120px;height:100px;"></td></tr>
+           <tr><th>TITLE</th><td>{{b.title}}</td></tr>
+           <tr><th>AUTHOR</th><td>{{b.author}}</td></tr>
+           <tr><th>PRICE</th><td>{{b.price}}</td></tr>
+           <tr></tr><th>DOCUMENT</th><td><a href="{{i.pdf.url}}">DOWNLOAD</a></td>
+</table>
+</center>
+{% endblock %}

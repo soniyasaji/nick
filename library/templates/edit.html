@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit{% endblock %}
+{% block content %}
+<h3>EDIT BOOKS</h3>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{f.as_table}}
+    </table>
+    <input type="submit">
+</form>
+{% endblock %}
