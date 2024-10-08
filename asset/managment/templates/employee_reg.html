@@ -1,0 +1,219 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+<!-- Content Column -->
+<div class="col-lg-14 mb-4 container">
+    <h2 align="center"><b>EMPLOYEE REGISTRATION FORM</b></h2>
+    <div class="form-container">
+        <center>
+        <form id="employeeForm" method="post" action="{% url 'new_employee' %}" class="form">
+            {% csrf_token %}
+            <div class="container py-5 h-100" id="color">
+                <div class="row d-flex justify-content-center align-items-center h-100" id="reg">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-10">
+                                    <div class="card-body p-md-5 text-black">
+                                        <div class="row">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form3Example1m" id="name">Employee Name</label>
+                                                <input type="text" id="form3Example1m" class="form-control form-control-lg" name="a1" required/>
+                                                <span id="nameError" style="color: red; display: none;">Name is required.</span>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div data-mdb-input-init class="form-outline mb-4">
+                                                <label class="form-label" for="form3Example8" id="email">Email</label>
+                                                <input type="email" id="form3Example8" class="form-control form-control-lg" name="a7" required/>
+                                                <span id="emailError" style="color: red; display: none;">Invalid email format.</span>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <label class="form-label" id="phone" for="form3Example1n1">Phone Number</label>
+                                                    <input type="text" id="form3Example1n1" class="form-control form-control-lg" name="a3" required/>
+                                                    <span id="phoneError" style="color: red; display: none;">Invalid phone number format.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                            <h6 class="mb-0 me-4">Gender:</h6>
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input class="form-check-input" type="radio" name="a4" id="maleGender" value="Male" checked required/>
+                                                <label class="form-check-label" for="maleGender">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input class="form-check-input" type="radio" name="a4" id="femaleGender" value="Female" required/>
+                                                <label class="form-check-label" for="femaleGender">Female</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label" for="designationlabel">Designation</label>
+                                                <select id="designation" name="a5" data-mdb-select-init required>
+                                                    <option value="">Select Designation</option>
+                                                    <option value="HR">HR</option>
+                                                    <option value="Manager">Manager</option>
+                                                    <option value="Accountant">Accountant</option>
+                                                </select>
+                                                <span id="designationError" style="color: red; display: none;">Please select a designation.</span>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <label class="form-label" for="placelabel">Place</label>
+                                                <select id="place" name="a6" data-mdb-select-init required>
+                                                    <option value="">Select Place</option>
+                                                    <option value="Thiruvanthapuram">Thiruvanthapuram</option>
+                                                    <option value="Kollam">Kollam</option>
+                                                    <option value="Ernakulam">Ernakulam</option>
+                                                    <option value="Palakkad">Palakkad</option>
+                                                    <option value="Thrissur">Thrissur</option>
+                                                    <option value="Kottayam">Kottayam</option>
+                                                    <option value="Kozhikode">Kozhikode</option>
+                                                    <option value="Kannur">Kannur</option>
+                                                    <option value="Kasargod">Kasargod</option>
+                                                    <option value="Alappuzha">Alappuzha</option>
+                                                    <option value="Vayanad">Vayanad</option>
+                                                    <option value="Malappuram">Malappuram</option>
+                                                </select>
+                                                <span id="placeError" style="color: red; display: none;">Please select a place.</span>
+                                            </div>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" id="company" for="form3Example1m1">Address</label>
+                                            <textarea id="form3Example1m1" class="form-control form-control-lg" name="a2" required></textarea>
+                                            <span id="addressError" style="color: red; display: none;">Address is required.</span>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example9" id="username">Username</label>
+                                            <input type="text" id="form3Example9" class="form-control form-control-lg" name="a8" required/>
+                                            <span id="usernameError" style="color: red; display: none;">Username is required.</span>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example90" id="password">Password</label>
+                                            <input type="password" id="form3Example90" class="form-control form-control-lg" name="a9" required/>
+                                            <span id="passwordError" style="color: red; display: none;">Password is required.</span>
+                                        </div>
+                                        <div class="justify-content-end pt-1">
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg ms-2">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </center>
+    </div>
+</div>
+
+<script>
+    document.getElementById('employeeForm').addEventListener('submit', function (event) {
+        let valid = true;
+
+        // Name validation
+        const nameInput = document.getElementById('form3Example1m');
+        const nameError = document.getElementById('nameError');
+        if (nameInput.value.trim() === "") {
+            nameError.style.display = 'block';
+            nameInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            nameError.style.display = 'none';
+            nameInput.style.borderColor = '';
+        }
+
+        // Email validation
+        const emailInput = document.getElementById('form3Example8');
+        const emailError = document.getElementById('emailError');
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(emailInput.value)) {
+            emailError.style.display = 'block';
+            emailInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            emailError.style.display = 'none';
+            emailInput.style.borderColor = '';
+        }
+
+        // Phone number validation
+        const phoneInput = document.getElementById('form3Example1n1');
+        const phoneError = document.getElementById('phoneError');
+        const phonePattern = /^\+?\d{9,15}$/;
+        if (!phonePattern.test(phoneInput.value)) {
+            phoneError.style.display = 'block';
+            phoneInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            phoneError.style.display = 'none';
+            phoneInput.style.borderColor = '';
+        }
+
+        // Designation validation
+        const designationInput = document.getElementById('designation');
+        const designationError = document.getElementById('designationError');
+        if (designationInput.value === "") {
+            designationError.style.display = 'block';
+            designationInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            designationError.style.display = 'none';
+            designationInput.style.borderColor = '';
+        }
+
+        // Place validation
+        const placeInput = document.getElementById('place');
+        const placeError = document.getElementById('placeError');
+        if (placeInput.value === "") {
+            placeError.style.display = 'block';
+            placeInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            placeError.style.display = 'none';
+            placeInput.style.borderColor = '';
+        }
+
+        // Address validation
+        const addressInput = document.getElementById('form3Example1m1');
+        const addressError = document.getElementById('addressError');
+        if (addressInput.value.trim() === "") {
+            addressError.style.display = 'block';
+            addressInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            addressError.style.display = 'none';
+            addressInput.style.borderColor = '';
+        }
+
+        // Username validation
+        const usernameInput = document.getElementById('form3Example9');
+        const usernameError = document.getElementById('usernameError');
+        if (usernameInput.value.trim() === "") {
+            usernameError.style.display = 'block';
+            usernameInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            usernameError.style.display = 'none';
+            usernameInput.style.borderColor = '';
+        }
+
+        // Password validation
+        const passwordInput = document.getElementById('form3Example90');
+        const passwordError = document.getElementById('passwordError');
+        if (passwordInput.value.trim() === "") {
+            passwordError.style.display = 'block';
+            passwordInput.style.borderColor = 'red';
+            valid = false;
+        } else {
+            passwordError.style.display = 'none';
+            passwordInput.style.borderColor = '';
+        }
+
+        // If any validation fails, prevent form submission
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+</script>
+{% endblock %}

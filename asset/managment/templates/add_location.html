@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Location</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="file"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <svg id="logo-animated" class="logo-animated" viewBox="0 0 200 200" style="--startColor: hsl(163.6731769204633, 100%, 75%); --stopColor: hsl(223.6731769204633, 100%, 75%);">
+        <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+                <stop id="gradientStop1" offset="0%" stop-color="var(--startColor)"></stop>
+                <stop id="gradientStop2 " offset="100%" stop-color="var(--stopColor)"></stop>
+            </linearGradient>
+        </defs>
+        <path d="M175,90.02113642486175C175,109.8086098672088,156.25,152.05031937224393,137.5,163.7518199899316C118.75,175.45332060761925,81.40154082615433,169.19238697323868,62.500000000000014,160.23014013098776C43.598459173845704,151.26789328873684,22.622930055988892,131.87807331494795,24.090755043074136,109.97833893642616C25.55858003015938,88.07860455790436,52.405409096357175,39.6569604599531,71.30694992251148,28.831733859856957C90.20849074866578,18.006507259760816,120.2178249870852,34.82874557501517,137.49999999999994,45.026979335849305C154.7821750129147,55.22521309668344,175,70.2336629825147,175,90.02113642486175C175,109.8086098672088,156.25,152.05031937224393,137.5,163.7518199899316" fill="url('#gradient')"></path>
+
+    </svg>
+<h1>Add New Location</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Location">
+</form>
+
+<div class="action-links">
+    <li><a href="{% url 'location_list' %}">Back to Location List</a></li>
+</div>
+
+</body>
+</html>

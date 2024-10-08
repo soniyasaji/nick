@@ -1,0 +1,80 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+                      
+                        <!-- Content Row -->
+                    <div class="row"> 
+               
+                        <!-- Content Column -->
+                        <div class="col-lg-14 mb-4 container">
+                          <h2 align="center"><b>LIST PRODUCT</b></h2>
+                          <div class="form-container">
+                              <center>
+                                <table class="table table-danger">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Product Id</th>
+                                      <th scope="col">Product Name</th>
+                                      <th scope="col">Image</th>
+                                      <th scope="col">Description</th>
+                                      <th scope="col">Quantity</th>
+                                      <th scope="col">Amount</th>
+                                      <th scope="col">Edit</th>
+                                      <th scope="col">Delete</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% for i in listprod %}
+                                    <tr>
+                                      
+                                    </tr>
+                                    <td>{{i.Product_id}}</td>
+                                      <td>{{i.Product_Name}}</td>
+                                      <td><img src="/media/{{ i.Image }}" width="50" height="50"></td>
+                                      <td>{{i.Description}}</td>
+                                      <td>{{i.Quantity}}</td>
+                                      <td>{{i.Amount}}</td>
+
+                                      <td><a href="{% url 'edit_product' %}?id={{i.Product_id}}">Edit</a></td>
+                                      <td><a href="delete_product/{{i.Product_id}}">Delete</a></td>
+
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </center>
+                            </div>
+
+                            <div class="container-fluid mt-5">
+                              <div class="row" style="margin-bottom:100px;">
+                                  <div class="col-sm-5">
+                                      <img src="{{listprod.Image.url}}" height="350px" width="370px">
+                          
+                                  </div>
+                                  <div class="col-sm-5 mt-3">
+                                    <h3 class="text-uppercase mb-5">{{listprod.Product_Name}}</h3>
+                                      <h5 class="mb-3">Product Description</h5>
+                                      <p class="mb-5" style="text-align:justify;line-height:1.7;" >{{listprod.Description}}</p>
+                                      <h6>{{listprod.Amount}}</h6>
+                                      {% if user.is_superuser != True %}
+                                      {% if listprod.Quantity <= 0 %}
+                                      <h4 class="mt-2">OUT OF STOCK</h4>
+                                      {% else %}
+                                      <a href="" class="btn btn-danger mt-4">ADD TO CART</a>
+                                      {% endif %}
+                                      {% else %}
+                                      {% if listprod.Quantity <= 0 %}
+                                      <a href="{% url 'index' %}" class="btn btn-danger mt-4">ADD STOCK</a>
+                                      {% endif %} {% endif %}
+                                  </div>
+                              </div>
+                          </div>
+                          {% endblock %}
+    

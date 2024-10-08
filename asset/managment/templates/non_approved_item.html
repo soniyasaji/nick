@@ -1,0 +1,31 @@
+{% extends "staffdashboard.html" %}
+{% block content %}
+<h1>Non-Approved Items</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Product Name</th>
+            <th>Employee Name</th>
+            <th>Status</th>
+            <th>Penalty</th>
+            <th>Defect</th>
+            <th>Purpose</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in requestitem %}
+        <tr>
+            <td>{{ item.Request_id }}</td>
+            <td>{{ item.Product_id.Product_Name }}</td>
+            <td>{{ item.Employee_id.Employee_name }}</td>
+            <td>{{ item.Status }}</td>
+            <td>{{ item.Penalty }}</td>
+            <td>{{ item.Defect }}</td>
+            <td>{{ item.Purpose }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

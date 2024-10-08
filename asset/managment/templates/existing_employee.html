@@ -1,0 +1,51 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+                      
+                        <!-- Content Row -->
+                    <div class="row"> 
+               
+                        <!-- Content Column -->
+                        <div class="col-lg-14 mb-4 container">
+                          <h2 align="center"><b>EMPLOYEES LIST</b></h2>
+                          <div class="form-container">
+                              <center>
+                                <table class="table table-danger">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Employee Id</th>
+                                      <th scope="col">Employee Name</th>
+                                      <th scope="col">Phone</th>
+                                      <th scope="col">Designation</th>
+                                      <th scope="col">Place</th>
+                                      <th scope="col">Edit</th>
+                                      <th scope="col">Delete</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% for i in empf %}
+                   
+                                    <tr>
+                                      <td>{{i.Employee_id}}</td>
+                                      <td>{{i.Employee_name}}</td>
+                                      <td>{{i.Phone}}</td>
+                                      <td>{{i.Designation}}</td>
+                                      <td>{{i.Place}}</td>
+                                      <td><a href="{%  url 'edit_emp_profile' %}?id={{i.Employee_id}}">Edit</a></td>
+                                      <td><a href="delete/{{i.Employee_id}}">Delete</a></td>
+
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </center>
+                            </div>
+                          {% endblock %}
+    

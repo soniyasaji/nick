@@ -1,0 +1,98 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+
+{% for i in pdata %}
+{{i.Product_Name}}
+<!-- Begin Page Content -->
+
+                <div class="container-fluid">
+
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        
+                        <!-- Content Row -->
+                    <div class="row"> 
+               
+                        <!-- Content Column -->
+                        <div class="col-lg-14 mb-4 container">
+                          <h2 align="center"><b>EDIT PRODUCT DETAILS</b></h2>
+                          <div class="form-container">{{i.Product}}
+                              <center>
+                            <form method="post" enctype="multipart/form-data" action="{% url 'edit_product_item' %}" class="form">
+                              {% csrf_token %}
+                              <input type="hidden" name="prodinf" value="{{i.Product_id}}"/>
+
+                              <div class="container py-5 h-100" id="color">
+                                <div class="row d-flex justify-content-center align-items-center h-100" id="reg">
+                                  <div class="col">
+                                    <div class="card card-registration my-4">
+                                      <div class="row g-0">
+                <input type="hidden" name="pid" value="{{pdata.Product_id}}">
+
+                                        <div class="col-xl-10">
+                                          <div class="card-body p-md-5 text-black">
+                                            
+                                            <div data-mdb-input-init class="form-outline">
+                                                  <label class="form-label" for="form3Example1m" id="name">Product Name</label>
+                                                  <input type="text" id="form3Example1m" name="proname" value="{{i.Product_Name}}"  class="form-control form-control-lg"/>
+                                                </div>
+                                                <br>
+                                              
+                                              <div class="form-outline">
+                                                <input type="hidden" name="productimage" value="{{pdata.Image}}">
+
+                                                <label class="form-label" for="form3Example1m" id="name">Image</label>
+                                                <img src="/media/{{ i.Image }}" width="50" height="50">
+                                                <input type="file" id="form3Example1m" name="proimage"  alt="productimage" value="{{i.Image}}" class="form-control form-control-lg"/>
+                                                </div>
+                                                <br>
+                            
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" class="des" for="form3Example1m1" style="text-indent: -550px;">Description</label>
+                                                <textarea id="form3Example1m1" class="form-control form-control-lg" name="prodes">{{i.Description}}</textarea>
+                                              </div>
+                                              <br>
+
+                                              <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form3Example1m" id="name">Specification</label>
+                                                <input type="text" id="form3Example1m" name="prospec" value="{{i.Specification}}" class="form-control form-control-lg"/>
+                                              </div>
+                                              <br>
+
+                                              <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form3Example1m" id="name" style="text-indent: -30px;">Quantity</label>
+                                                <input type="number" id="form3Example1m" name="proqn" value="{{i.Quantity}}"  class="form-control form-control-lg"/>
+                                              </div>
+                                              <br>
+                                              
+                                              <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="form3Example1m" id="name" style="text-indent: -30px;">Amount</label>
+                                                <input type="number" id="form3Example1m" name="proamt"  value="{{i.Amount}}"  class="form-control form-control-lg"/>
+                                              </div>
+                                              <br>
+
+                                           
+
+                                              </div>
+                                              
+                                              <div class="justify-content-end pt-1">
+                                              <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg ms-2">Submit</button>
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                            </center>
+                          </div>
+    
+                          </div>
+                          {% endfor %}
+
+{% endblock %}

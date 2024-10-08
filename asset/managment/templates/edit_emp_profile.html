@@ -1,0 +1,121 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+
+{% for data in data %}
+{{data.Employee_name}}
+
+    <div class="col-lg-14 mb-4 container">{{data.Employee}}
+      <h2 align="center"><b>Edit Employee Form</b></h2>
+                                <div class="form-container">
+                                    <center>
+                                  <form method="post" action="{% url 'edit_employee' %}" class="" onsubmit="return val(this)" enctype="multipart/form-data">  
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hi" value="{{data.Employee_id}}"/>
+                                    <div class="container py-5 h-100" id="color">
+                                      <div class="row d-flex justify-content-center align-items-center h-100" id="reg">
+                                        <div class="col">
+                                          <div class="card card-registration my-4">
+                                            <div class="row g-0">
+                        <input type="hidden" name="empid" value="{{data.Employee_id}}">
+                                              <div class="col-xl-10">
+                                                <div class="card-body p-md-5 text-black">
+                                  
+                                                  <div class="row">
+                                                    
+                                                      <div data-mdb-input-init class="form-outline">
+                                                        <label class="form-label" for="form3Example1m" id="name">Employee Name</label>
+                                                        <input type="text" id="form3Example1m" class="form-control form-control-lg" name="e1" value="{{data.Employee_name}}" />
+                                                      </div>
+                                                    </div>
+                                                    <br>
+                                  
+                                                    <div data-mdb-input-init class="form-outline mb-4">
+                                                      <label class="form-label" for="form3Example8" id="email">Email</label>
+                                                      <input type="email" id="form3Example8" class="form-control form-control-lg" name="e7" value="{{data.Email}}" />
+                                                    </div>
+                                                    
+                                                    <div data-mdb-input-init class="form-outline mb-4">
+                                                      <div data-mdb-input-init class="form-outline">
+                                                        <label class="form-label" for="form3Example8" id="email">Phone Number</label>
+                                                        <input type="number" id="form3Example1n1" class="form-control form-control-lg" name="e3" value="{{data.Phone}}"/>
+                                                      </div>
+                                                    </div>
+                                                  
+                                                  
+                                                  <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                  
+                                                    <h6 class="mb-0 me-4">Gender:</h6>
+                                  
+                                                    <div class="form-check form-check-inline mb-0 me-4" value="{{data.Gender}}">
+                                                      <input class="form-check-input" type="radio" name="e4"  id="femaleGender"
+                                                        value="Male" checked />
+                                                      <label class="form-check-label" for="femaleGender">Male</label>
+                                                    </div>
+                                  
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                      <input class="form-check-input" type="radio" name="e4" id="maleGender"
+                                                        value="Female" checked />
+                                                      <label class="form-check-label" for="maleGender">Female</label>
+                                                    </div>
+                                                  </div>
+                                  
+                                                  <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                      <label class="form-label" for="designationlabel" >Designation</label>
+                                                      <select id="designation" name="e5" data-mdb-select-init value="{{data.Designation}}">
+                                                        <option value="HR" >HR</option>
+                                                        <option value="Manager">Manager</option>
+                                                        <option value="Accountant">Accountant</option>
+                                                      </select>
+                                                    </div>
+      
+                                                    <div class="col-md-6 mb-4">
+                                                      <label class="form-label" for="placelabel">Place</label>
+                                                      <select id="place" name="e6" data-mdb-select-init value="{{data.Place}}">
+                                                        <option value="Thiruvanthapuram">Thiruvanthapuram</option>
+                                                        <option value="Kollam">Kollam</option>
+                                                        <option value="Ernakulam">Ernakulam</option>
+                                                        <option value="Palakkad">Palakkad</option>
+                                                        <option value="Thrissur">Thrissur</option>
+                                                        <option value="Kottayam">Kottayam</option>
+                                                        <option value="Kozhikode">Kozhikode</option>
+                                                        <option value="Kannur">Kannur</option>
+                                                        <option value="Kasargod">Kasargod</option>
+                                                        <option value="Alappuzha">Alappuzha</option>
+                                                        <option value="Vayanad">Vayanad</option>
+                                                        <option value="Malappuram">Malappuram</option>
+                                                      </select>
+                                                    </div>
+                                                  </div>
+
+                                                    <div data-mdb-input-init class="form-outline">
+                                                      <label class="form-label" id="company" for="form3Example1m1">Address</label>
+                                                      <textarea id="form3Example1m1" class="form-control form-control-lg" name="e2" value="{{data.Address}}">{{data.Address}}</textarea>
+                                                    </div>
+                                                
+
+                                                  <div data-mdb-input-init class="form-outline mb-4">
+                                                    <label class="form-label" for="form3Example9" id="username">Username</label>
+                                                    <input type="text" id="form3Example9" class="form-control form-control-lg" value="{{data.username}}" name="e8"/>
+                                                  </div>
+                                  
+                                                  <div data-mdb-input-init class="form-outline mb-4">
+                                                    <label class="form-label" for="form3Example90" id="password">Password</label>
+                                                    <input type="password" id="form3Example90" class="form-control form-control-lg" value="{{data.password}}" name="e9" />
+                                                  </div>
+      
+                                                  <div class="justify-content-end pt-1">
+                                                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg ms-2">Submit</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  </center>
+                                </div>
+                                {% endfor %}
+    {% endblock %}

@@ -1,0 +1,39 @@
+{% extends "staffdashboard.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-14 mb-4 container">
+            <h2 align="center"><b>REJECT ITEMS</b></h2>
+            <div class="form-container">
+                <center>
+                    <table class="table table-danger">
+                        <thead>
+                            <tr>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Request Date</th>
+                                <th scope="col">Reason for Rejection</th>
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list in rejected_items %}
+                            <tr>
+                                <td>{{list.Employee_id.Employee_name}}</td>
+                                <td>{{list.Product_id.Product_Name}}</td>
+                                <td>{{list.from_date}}</td>
+                                <td>{{list.Purpose}}</td>
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

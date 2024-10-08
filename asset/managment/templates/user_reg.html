@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Asset Registration</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #e9ecef; /* Light gray background for the entire page */
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #212529; /* Darker gray for the heading */
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .form-container {
+      background-color: #ffffff; /* White background for the form */
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #495057; /* Medium gray for labels */
+    }
+
+    .form-control {
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+      margin-bottom: 20px;
+      background-color: #f8f9fa; /* Slightly off-white background for form inputs */
+    }
+
+    .btn-submit {
+      background-color: #007bff; /* Primary blue color */
+      color: white;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .btn-submit:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .btn-reset {
+      background-color: #6c757d; /* Gray color */
+      color: white;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .btn-reset:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+    }
+
+    .row {
+      margin-bottom: 20px;
+    }
+
+    .gender-group {
+      display: flex;
+      gap: 20px;
+    }
+
+    .gender-group .form-check {
+      margin-right: 20px;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #343a40; /* Dark background for the footer */
+      color: white;
+      position: relative;
+      width: 100%;
+      bottom: 0;
+    }
+
+  </style>
+  
+</head>
+
+<body>
+
+  <h1>USER REGISTRATION FORM</h1>
+
+  <div class="form-container">
+    <form method="post" action="{% url 'new_user' %}">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" class="form-control" required>
+        </div>
+      </div>
+
+      <label for="phone">Phone Number</label>
+      <input type="number" id="phone" name="phone" class="form-control" required>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" class="form-control" required>
+
+      <label for="gender">Gender</label>
+      <div class="gender-group">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="maleGender" value="Male" checked>
+          <label class="form-check-label" for="maleGender">Male</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="Female">
+          <label class="form-check-label" for="femaleGender">Female</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="state">State</label>
+          <select id="state" name="state" class="form-control">
+            <option value="kollam">Kollam</option>
+            <option value="vayanad">Vayanad</option>
+            <option value="palakkad">Palakkad</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="city">City</label>
+          <select id="city" name="city" class="form-control">
+            <option value="adoor">Adoor</option>
+            <option value="enathu">Enathu</option>
+            <option value="punalur">Punalur</option>
+            <option value="kottarakara">Kottarakara</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" class="form-control" rows="3"></textarea>
+
+      <label for="pincode">PinCode</label>
+      <input type="number" id="pincode" name="pincode" class="form-control" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" class="form-control" required>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" class="form-control" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" class="form-control" required>
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="reset" class="btn-reset">Reset</button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/parallax/parallax.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <footer>
+    <p>&copy; 2024 Asset Registration. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+{% extends "staffdashboard.html" %} 
+{% block content %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Row -->
+        <div class="row"> 
+
+            <!-- Content Column -->
+            <div class="col-lg-14 mb-4 container">
+                <h2 align="center"><b>VIEW PENALTY</b></h2>
+                <div class="form-container">
+                    <center>
+                        <table class="table table-danger">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Penalty id</th>
+                                    <th scope="col">Request Date</th>
+                                    <th scope="col">Employee Name</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in pen %}
+                                <tr>
+                                    <td>{{ p.penalty_id }}</td>
+                                    <td>{{ p.request.Status }}</td>
+                                    <td>{{ p.employee.Employee_name }}</td>
+                                    <td>{{ p.amount }}</td>
+                                    <td>{{ p.remark }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

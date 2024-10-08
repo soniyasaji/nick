@@ -1,0 +1,207 @@
+{% extends "staffdashboard.html" %}
+
+{% block content %}
+<style>
+/* Existing styles... */
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-group input[type='button'] {
+  background-color: #eeeeee;
+  min-width: 30px; /* Adjusted width */
+  height: 30px; /* Adjusted height */
+  font-size: 14px; /* Adjusted font size */
+}
+
+.input-group .quantity-field {
+  width: 30px; /* Adjusted width */
+  height: 30px; /* Adjusted height */
+  font-size: 14px; /* Adjusted font size */
+  text-align: center;
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Chrome, Safari */
+  appearance: none; /* Other browsers */
+}
+
+.input-group .quantity-field::-webkit-inner-spin-button,
+.input-group .quantity-field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ensure the table layout adjusts well with the reduced sizes */
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Optional: Add padding adjustment if needed */
+.table {
+  padding: 0 10px;
+}
+
+/* Optional: Adjust button sizes */
+.btn {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Hide the Available Quantity column */
+.table .hide-column {
+  display: none;
+}
+
+
+</style>
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Cart List -->
+  <div class="cart-list">
+    <h2 align="center"><b>CART LIST</b></h2>
+    <div class="form-container table-container">
+      <center>
+        <table class="table table-danger">
+          <thead>
+            <tr>
+              <th scope="col">Product Id</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Image</th>
+              <th scope="col">Description</th>
+              <th scope="col" class="hide-column">Available Quantity</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total</th>
+              <th scope="col">Delete</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% if cart_details %}
+              {% for details in cart_details %}
+              <tr data-product-id="{{ details.product.Product_id }}" data-available-quantity="{{ details.product.Quantity }}">
+                <td>{{ details.product.Product_id }}</td>
+                <td>{{ details.product.Product_Name }}</td>
+                <td><img src="/media/{{ details.product.Image }}" width="50" height="50"></td>
+                <td>{{ details.product.Description }}</td>
+                <td class="hide-column">{{ details.product.Quantity }}</td>
+                <td>
+                  <div class="input-group">
+                    <input type="button" value="-" class="button-minus">
+                    <input type="number" step="1" min="1" value="{{ details.quantity }}" name="quantity" class="quantity-field">
+                    <input type="button" value="+" class="button-plus">
+                  </div>
+                </td>
+                <td>{{ details.product.Amount }}</td>
+                <td class="total-amount">{{ details.quantity|floatformat:2 }} * {{ details.product.Amount|floatformat:2 }}</td>
+                <td><a href="delete_cart/{{details.id}}"><i class="fa fa-trash" style="color:red;margin:8px 0 8px;" aria-hidden="true"></i></a></td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="8" class="text-center">No items in the cart</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </center>
+    </div>
+  </div>
+
+  <!-- Checkout -->
+  <div class="checkout">
+    <h2 class="text-center">CHECK OUT</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th class="text-center">Total Amount</th>
+      </tr>
+      <tr>
+        <td class="text-center" id="checkout-total">
+          {% if cart_details %}
+            {{ total_amount|floatformat:2 }}
+          {% else %}
+            0.00
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+    <div style="position:relative;">
+      <a href="{% url 'order_form' %}" class="btn btn-danger">Place Order</a>
+      <a href="" class="btn btn-danger" style="position:absolute;right:0">Continue Shopping</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    function updateRowTotal(row) {
+      var quantityField = row.find('input[name="quantity"]');
+      var quantity = parseInt(quantityField.val(), 10);
+      var amount = parseFloat(row.find('td:nth-child(7)').text().replace(',', ''));
+      var total = quantity * amount;
+      row.find('td.total-amount').text(total.toFixed(0));
+      updateCheckoutTotal();
+    }
+
+    function updateCheckoutTotal() {
+      var checkoutTotal = 0;
+      $('.total-amount').each(function() {
+        checkoutTotal += parseFloat($(this).text().replace(',', ''));
+      });
+      $('#checkout-total').text(checkoutTotal.toFixed(2));
+    }
+
+    function validateQuantity(row, newQuantity) {
+      var availableQuantity = parseInt(row.data('available-quantity'), 10);
+      return newQuantity > 0 && newQuantity <= availableQuantity;
+    }
+
+    // Increment value
+    $(document).on('click', '.button-plus', function(e) {
+      e.preventDefault();
+      var row = $(this).closest('tr');
+      var quantityField = row.find('input[name="quantity"]');
+      var currentVal = parseInt(quantityField.val(), 10);
+      var newVal = currentVal + 1;
+
+      if (validateQuantity(row, newVal)) {
+        quantityField.val(newVal);
+      } else {
+        alert("Cannot increase quantity beyond available stock.");
+      }
+
+      updateRowTotal(row);
+    });
+
+    // Decrement value
+    $(document).on('click', '.button-minus', function(e) {
+      e.preventDefault();
+      var row = $(this).closest('tr');
+      var quantityField = row.find('input[name="quantity"]');
+      var currentVal = parseInt(quantityField.val(), 10);
+      var newVal = currentVal - 1;
+
+      if (newVal >= 1) {
+        quantityField.val(newVal);
+      } else {
+        quantityField.val(1);
+      }
+
+      updateRowTotal(row);
+    });
+
+    // Initialize checkout total on page load
+    if ($('.total-amount').length > 0) {
+      updateCheckoutTotal();
+    } else {
+      $('#checkout-total').text('0.00');
+    }
+  });
+</script>
+
+{% endblock %}

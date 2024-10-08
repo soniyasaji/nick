@@ -1,0 +1,46 @@
+{% extends "staffdashboard.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-14 mb-4 container">
+            <h2 align="center"><b>APPROVED ITEM</b></h2>
+            <div class="form-container">
+                <center>
+                    <table class="table table-danger">
+                        <thead>
+                            <tr>
+                                <th scope="col">Request ID</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Employee Name</th>
+                                <th scope="col">From Date</th>
+                                <th scope="col">Return Date</th>
+                                <th scope="col">Penalty</th>
+                                <th scope="col">Defect</th>
+                                <th scope="col">Penalty</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in requestitem %}
+                            <tr>
+                                <td>{{item.Request_id}}</td>
+                                <td>{{item.Product_id.Product_Name}}</td>
+                                <td>{{item.Employee_id.Employee_name}}</td>
+                                <td>{{item.from_date}}</td>
+                                <td>{{item.Return_Date}}</td>
+                                <td>{{item.Penalty}}</td>
+                                <td>{{item.Defect}}</td>
+                                <td>
+                                    <a href="{% url 'penalty_view' item.id  %}" class="btn btn-colorful">Penalty</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
